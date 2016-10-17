@@ -7,7 +7,7 @@ Author: [Rick Slinkman](<http://rwslinkman.nl>)
 
 The library can be used to bring the `Presentable` design pattern to the `RecyclerView` in Android.
 List your items easily with a library-provided `Adapter`.
- The `PresentableAdapter` comes with an integrated click and long-click listener.
+The `PresentableAdapter` comes with an integrated click and long-click listener.
 
 Using the Presentable design pattern it is easy to manage lists.
 
