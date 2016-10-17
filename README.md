@@ -87,7 +87,7 @@ class ExampleStringPresenter implements Presenter<String, ExampleStringPresenter
 }
 ```
 
-The example app contains a simple `Presenter` that presents a person's name.
+The example app contains a simple `Presenter` that presents a person's name.<br/>
 Names are represented as one `String`.
 
 Handling clicks
@@ -122,7 +122,6 @@ mAdapter.setItemClickListener(new PresentableItemClickListener<String>()
    @Override
    public void onItemSelected(String item) {
       // Handle a long-click
-
    }
 });
 ```
