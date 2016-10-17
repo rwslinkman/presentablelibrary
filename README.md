@@ -5,8 +5,8 @@ Presentable Library for RecyclerViews in Android
 
 Author: [Rick Slinkman](<http://rwslinkman.nl>)
 
-The library can be used to bring the `Presentable` design pattern to the `RecyclerView` in Android.
-List your items easily with a library-provided `Adapter`.
+The library can be used to bring the `Presentable` design pattern to the `RecyclerView` in Android.<br/>
+List your items easily with a library-provided `Adapter`.<br/>
 The `PresentableAdapter` comes with an integrated click and long-click listener.
 
 Using the Presentable design pattern it is easy to manage lists.
@@ -42,7 +42,7 @@ adapter.setItemClickListener(this);
 recyclerView.setAdapter(adapter);
 ```
 
-Create a Presenter for each object you want to display as a list item.
+Create a Presenter for each object you want to display as a list item.<br/>
 A Presenter must contain a ViewHolder that extends RecyclerView.ViewHolder
 
 ```
@@ -92,7 +92,7 @@ Names are represented as one `String`.
 
 Handling clicks
 ----------
-The PresentableAdapter comes with an internal click and long-click listener.
+The PresentableAdapter comes with an internal click and long-click listener.<br/>
 A listener can be set through the `PresentableAdapter` constructor.
  ```
  mAdapter = new PresentableAdapter<>(new ExampleStringPresenter(), data,
