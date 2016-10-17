@@ -5,8 +5,11 @@ Presentable Library for RecyclerViews in Android
 
 Author: [Rick Slinkman](<http://rwslinkman.nl>)
 
-The library can be used to bring the Presentable design pattern to the RecyclerView in Android.
-List your items easily with a library-provided Adapter with integrated click and long-click listener.
+The library can be used to bring the `Presentable` design pattern to the `RecyclerView` in Android.
+List your items easily with a library-provided `Adapter`.
+ The `PresentableAdapter` comes with an integrated click and long-click listener.
+
+Using the Presentable design pattern it is easy to manage lists.
 
 Integrating with Android Studio
 -------------------------------
@@ -26,7 +29,7 @@ dependencies {
 
 How to use
 ----------
-To use the PresentableAdapter, create an instance in your Activity or Fragment.
+To use the `PresentableAdapter`, create an instance in your `Activity` or `Fragment`.
 
 ```
 LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -84,4 +87,42 @@ class ExampleStringPresenter implements Presenter<String, ExampleStringPresenter
 }
 ```
 
-The example app contains a simple Presenter that presents Strings.
+The example app contains a simple `Presenter` that presents a person's name.
+Names are represented as one `String`.
+
+Handling clicks
+----------
+The PresentableAdapter comes with an internal click and long-click listener.
+A listener can be set through the `PresentableAdapter` constructor.
+ ```
+ mAdapter = new PresentableAdapter<>(new ExampleStringPresenter(), data,
+    new PresentableItemClickListener<String>()
+    {
+         @Override
+         public void onItemClicked(String item) {
+            // Handle a click
+         }
+
+         @Override
+         public void onItemSelected(String item) {
+            // Handle a long-click
+
+         }
+    });
+ ```
+It is also possible to use a setter.
+```
+mAdapter.setItemClickListener(new PresentableItemClickListener<String>()
+{
+   @Override
+   public void onItemClicked(String item) {
+      // Handle a click
+   }
+
+   @Override
+   public void onItemSelected(String item) {
+      // Handle a long-click
+
+   }
+});
+```
