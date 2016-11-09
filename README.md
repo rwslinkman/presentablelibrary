@@ -23,7 +23,7 @@ repositories {
 
 ```
 dependencies {
-	compile 'nl.rwslinkman.presentable:presentable:1.6'
+	compile 'nl.rwslinkman.presentable:presentable:1.7'
 }
 ```
 
