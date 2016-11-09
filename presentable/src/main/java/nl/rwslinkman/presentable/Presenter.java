@@ -10,5 +10,4 @@ public interface Presenter<O, V extends RecyclerView.ViewHolder>
 {
     V onCreateViewHolder(ViewGroup parent);
     void onBindViewHolder(V viewHolder, O item);
-    void onUnbindViewHolder(V viewHolder);
 }

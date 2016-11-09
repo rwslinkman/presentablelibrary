@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,9 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
     public PresentableAdapter(Presenter presenter, List<T> data)
     {
         this.presenter = presenter;
+		if(data == null) {
+			data = new ArrayList<>();
+		}
         this.data = data;
     }
 
@@ -57,6 +61,15 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         this.data = data;
     }
 
+    public List<T> getData() {
+        return this.data;
+    }
+
+    public T getItem(int position)
+    {
+        return this.data.get(position);
+    }
+
     @SuppressWarnings("unused")
     public void setItemClickListener(PresentableItemClickListener<T> listener)
     {
@@ -85,7 +98,7 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         @Override
         public boolean onLongClick(View view) {
             if(itemClickListener != null) {
-                this.itemClickListener.onItemSelected(this.object);
+                this.itemClickListener.onItemPressed(this.object);
             }
             return true;
         }
