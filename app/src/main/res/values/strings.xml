@@ -104,4 +104,5 @@
     <string name="example_data_item_97" translatable="false">Tessie Herod</string>
     <string name="example_data_item_98" translatable="false">Jesenia Steinbeck</string>
     <string name="example_data_item_99" translatable="false">Jan Jansen</string>
+    <string name="example_remove_undo">Undo</string>
 </resources>

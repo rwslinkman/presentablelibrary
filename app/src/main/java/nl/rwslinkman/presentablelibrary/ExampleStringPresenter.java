@@ -36,11 +36,6 @@ class ExampleStringPresenter implements Presenter<String, ExampleStringPresenter
         viewHolder.nameView.setText(item);
     }
 
-    @Override
-    public void onUnbindViewHolder(ViewHolder viewHolder) {
-        // NOP
-    }
-
     // Create your custom ViewHolder representing the Views in the list item
     class ViewHolder extends RecyclerView.ViewHolder
     {
