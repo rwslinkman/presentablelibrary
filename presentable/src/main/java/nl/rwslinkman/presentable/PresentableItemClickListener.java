@@ -7,5 +7,4 @@ package nl.rwslinkman.presentable;
 public interface PresentableItemClickListener<T>
 {
     void onItemClicked(T item);
-    void onItemPressed(T item);
 }
