@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -19,32 +20,46 @@ import static junit.framework.Assert.assertNotNull;
  */
 public class PresentableAdapterTest
 {
+    private PresentableAdapter<String> testAdapter;
+
+    @Before
+    public void setUp()
+    {
+        testAdapter = buildTestAdapter(true);
+    }
 
     @Test
     public void test_shouldReturnViewHolder()
     {
-        PresentableAdapter<String> adapter = buildTestAdapter(true);
+
         ViewGroup inputGroup = new RelativeLayout(null);
 
-        RecyclerView.ViewHolder output = adapter.onCreateViewHolder(inputGroup, 0);
+        RecyclerView.ViewHolder output = testAdapter.onCreateViewHolder(inputGroup, 0);
         assertNotNull(output);
         assertNotNull(output.itemView);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = IllegalStateException.class)
     public void test_shouldThrowExceptionWhenNoViewReturned()
     {
         PresentableAdapter<String> adapter = buildTestAdapter(false);
         ViewGroup inputGroup = new RelativeLayout(null);
 
-        RecyclerView.ViewHolder output = adapter.onCreateViewHolder(inputGroup, 0);
+        adapter.onCreateViewHolder(inputGroup, 0);
     }
 
     @Test
     public void test_shouldReturnItemCount()
     {
-        PresentableAdapter<String> adapter = buildTestAdapter(true);
-        assertEquals(2, adapter.getItemCount());
+        assertEquals(2, testAdapter.getItemCount());
+    }
+
+    @Test
+    public void test_shouldReturnEmptyDataList_withNullData()
+    {
+        PresentableAdapter<String> adapter = buildTestAdapter(true, null);
+        assertNotNull(adapter.getData());
+        assertEquals(0, adapter.getData().size());
     }
 
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView)
