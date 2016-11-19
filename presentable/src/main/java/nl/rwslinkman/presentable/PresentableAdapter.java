@@ -1,11 +1,15 @@
 package nl.rwslinkman.presentable;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nl.rwslinkman.presentable.interaction.ItemInteractionModel;
+import nl.rwslinkman.presentable.interaction.PresentableItemClickListener;
+import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
+import nl.rwslinkman.presentable.interaction.PresentableItemPressedListener;
 
 /**
  * class PresentableAdapter
@@ -37,19 +41,18 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         // Get item and raise event to Presenter
         T item = this.data.get(position);
         presenter.onBindViewHolder(holder, item);
 
         // After creating item, put listeners
-        ItemInteractionModel itemInteractionModel = new ItemInteractionModel(item);
-        if(this.clickListener != null) {
+        ItemInteractionModel<T> itemInteractionModel = new ItemInteractionModel(item);
+        if (this.clickListener != null) {
             itemInteractionModel.putClickListener(this.clickListener);
             holder.itemView.setOnClickListener(itemInteractionModel);
         }
-        if(this.pressedListener != null) {
+        if (this.pressedListener != null) {
             itemInteractionModel.putPressedListener(this.pressedListener);
             holder.itemView.setOnLongClickListener(itemInteractionModel);
         }
@@ -68,6 +71,7 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         return this.data;
     }
 
+    @SuppressWarnings("unused")
     public T getItem(int position)
     {
         return this.data.get(position);
@@ -84,40 +88,13 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         this.pressedListener = listener;
     }
 
-    private class ItemInteractionModel implements View.OnClickListener, View.OnLongClickListener
+    /**
+     * Convenience method
+     * @param listener PresentableItemInteractionListener<T>
+     */
+    public void setItemInteractionListener(PresentableItemInteractionListener<T> listener)
     {
-        private T object;
-        private PresentableItemClickListener<T> itemClickListener;
-        private PresentableItemPressedListener<T> itemLongClickListener;
-
-        ItemInteractionModel(T item)
-        {
-            this.itemClickListener = clickListener;
-            this.object = item;
-        }
-
-        @Override
-        public void onClick(View view)
-        {
-            if(itemClickListener != null) {
-                this.itemClickListener.onItemClicked(this.object);
-            }
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            if(itemLongClickListener != null) {
-                this.itemLongClickListener.onItemPressed(this.object);
-            }
-            return true;
-        }
-
-        void putClickListener(PresentableItemClickListener<T> clickListener) {
-            this.itemClickListener = clickListener;
-        }
-
-        void putPressedListener(PresentableItemPressedListener<T> pressedListener) {
-            this.itemLongClickListener = pressedListener;
-        }
+        this.setItemClickListener(listener);
+        this.setItemPressedListener(listener);
     }
 }

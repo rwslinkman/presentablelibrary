@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.rwslinkman.presentable.PresentableAdapter;
-import nl.rwslinkman.presentable.PresentableItemClickListener;
+import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
 
-public class ExampleActivity extends AppCompatActivity implements PresentableItemClickListener<String>
+public class ExampleActivity extends AppCompatActivity implements PresentableItemInteractionListener<String>
 {
     private static final String TAG = "ExampleActivity";
     private RecyclerView mRecyclerView;
@@ -43,7 +43,9 @@ public class ExampleActivity extends AppCompatActivity implements PresentableIte
 
         // Create adapter
         mAdapter = new PresentableAdapter<>(new ExampleStringPresenter(), data);
-        mAdapter.setItemClickListener(this);
+        mAdapter.setItemInteractionListener(this);
+//        mAdapter.setItemClickListener(this);
+//        mAdapter.setItemPressedListener(this);
         mRecyclerView.setAdapter(mAdapter);
 
         // You can update the dataSet as follows
