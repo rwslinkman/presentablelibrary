@@ -37,7 +37,11 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        return presenter.onCreateViewHolder(parent);
+        RecyclerView.ViewHolder viewHolder = presenter.onCreateViewHolder(parent);
+        if(viewHolder == null) {
+            throw new IllegalStateException("Presenter should return a ViewHolder");
+        }
+        return viewHolder;
     }
 
     @Override
