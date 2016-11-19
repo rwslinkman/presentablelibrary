@@ -10,10 +10,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import nl.rwslinkman.presentable.util.TestStringPresenter;
+import nl.rwslinkman.presentable.mock.MockStringPresenter;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Rick Slinkman
@@ -31,7 +31,6 @@ public class PresentableAdapterTest
     @Test
     public void test_shouldReturnViewHolder()
     {
-
         ViewGroup inputGroup = new RelativeLayout(null);
 
         RecyclerView.ViewHolder output = testAdapter.onCreateViewHolder(inputGroup, 0);
@@ -70,7 +69,7 @@ public class PresentableAdapterTest
 
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView, List<String> data)
     {
-        TestStringPresenter presenter = new TestStringPresenter(shouldCreateView);
+        MockStringPresenter presenter = new MockStringPresenter(shouldCreateView);
         return new PresentableAdapter<>(presenter, data);
     }
 }
