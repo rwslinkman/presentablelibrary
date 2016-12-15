@@ -103,9 +103,11 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
 
     public void addItem(T item) {
         //
+        this.data.add(item);
     }
 
     public void addItemAndNotify(T item) {
         //
+        addItem(item);
     }
 }

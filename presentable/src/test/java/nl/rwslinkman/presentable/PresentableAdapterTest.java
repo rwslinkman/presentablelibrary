@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import nl.rwslinkman.presentable.mock.MockStringPresenter;
@@ -81,7 +81,10 @@ public class PresentableAdapterTest
 
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView)
     {
-        List<String> data = Arrays.asList("Hello", "World");
+        // Explicit data set-up because Arrays.asList() threw UnsupportedOperationException on List.add()
+        List<String> data = new ArrayList<>();
+        data.add("Hello");
+        data.add("World");
         return buildTestAdapter(shouldCreateView, data);
     }
 
