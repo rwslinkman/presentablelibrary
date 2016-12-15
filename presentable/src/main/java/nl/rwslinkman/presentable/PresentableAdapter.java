@@ -101,13 +101,7 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         this.setItemPressedListener(listener);
     }
 
-    public void addItem(T item) {
-        //
-        this.data.add(item);
-    }
-
-    public void addItemAndNotify(T item) {
-        //
-        addItem(item);
+    public boolean addItem(T item) {
+        return item != null && this.data.add(item);
     }
 }
