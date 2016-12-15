@@ -17,7 +17,7 @@ import nl.rwslinkman.presentable.interaction.PresentableItemPressedListener;
  * Includes item click and selection handling
  * @author Rick Slinkman
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "WeakerAccess"})
 public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
     private Presenter presenter;
@@ -81,7 +81,6 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
         return this.data.get(position);
     }
 
-    @SuppressWarnings("unused")
     public void setItemClickListener(PresentableItemClickListener<T> listener)
     {
         this.clickListener = listener;
@@ -100,5 +99,13 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
     {
         this.setItemClickListener(listener);
         this.setItemPressedListener(listener);
+    }
+
+    public void addItem(T item) {
+        //
+    }
+
+    public void addItemAndNotify(T item) {
+        //
     }
 }

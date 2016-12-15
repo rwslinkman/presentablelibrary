@@ -61,6 +61,24 @@ public class PresentableAdapterTest
         assertEquals(0, adapter.getData().size());
     }
 
+    @Test
+    public void test_shouldChangeDataset_whenItemAdded()
+    {
+        String addedTestItem = "This is a test";
+        testAdapter.addItem(addedTestItem);
+        assertNotNull(testAdapter.getData());
+        assertEquals(3, testAdapter.getData().size());
+    }
+
+    @Test
+    public void test_shouldChangeDatasetAndChange_whenItemAddedAndNotified()
+    {
+        String addedTestItem = "This is a test";
+        testAdapter.addItemAndNotify(addedTestItem);
+        assertNotNull(testAdapter.getData());
+        assertEquals(3, testAdapter.getData().size());
+    }
+
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView)
     {
         List<String> data = Arrays.asList("Hello", "World");
