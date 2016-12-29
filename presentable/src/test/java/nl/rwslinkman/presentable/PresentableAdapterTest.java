@@ -7,13 +7,12 @@ import android.widget.RelativeLayout;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import nl.rwslinkman.presentable.mock.MockStringPresenter;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * @author Rick Slinkman
@@ -61,9 +60,33 @@ public class PresentableAdapterTest
         assertEquals(0, adapter.getData().size());
     }
 
+    @Test
+    public void test_shouldChangeData_whenItemAdded()
+    {
+        String addedTestItem = "This is a test";
+        boolean result = testAdapter.addItem(addedTestItem);
+        assertTrue(result);
+        assertNotNull(testAdapter.getData());
+        assertEquals(3, testAdapter.getData().size());
+    }
+
+    @Test
+    public void test_shouldNotChangeData_whenNullItemAdded()
+    {
+        boolean result = testAdapter.addItem(null);
+        assertFalse(result);
+        assertNotNull(testAdapter.getData());
+        assertEquals(2, testAdapter.getData().size());
+    }
+
+
+
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView)
     {
-        List<String> data = Arrays.asList("Hello", "World");
+        // Explicit data set-up because Arrays.asList() threw UnsupportedOperationException on List.add()
+        List<String> data = new ArrayList<>();
+        data.add("Hello");
+        data.add("World");
         return buildTestAdapter(shouldCreateView, data);
     }
 
