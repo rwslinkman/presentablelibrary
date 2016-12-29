@@ -23,7 +23,7 @@ repositories {
 
 ```
 dependencies {
-	compile 'nl.rwslinkman.presentable:presentable:1.6'
+	compile 'nl.rwslinkman.presentable:presentable:1.7'
 }
 ```
 
@@ -124,4 +124,11 @@ mAdapter.setItemClickListener(new PresentableItemClickListener<String>()
       // Handle a long-click
    }
 });
+```
+
+Adding an item
+----------
+The PresentableAdapter allows to add an item very easily.<br/>
+```
+mAdapter.addItem(input);
 ```

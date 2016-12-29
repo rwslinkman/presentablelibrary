@@ -1,28 +1,34 @@
 package nl.rwslinkman.presentablelibrary;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 import nl.rwslinkman.presentable.PresentableAdapter;
-import nl.rwslinkman.presentable.PresentableItemClickListener;
+import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
 
-public class ExampleActivity extends AppCompatActivity implements PresentableItemClickListener<String>
+/**
+ * Example to display the workings of the Presentable library
+ * @author Rick Slinkman
+ */
+public class ExampleActivity extends AppCompatActivity implements PresentableItemInteractionListener<String>, View.OnClickListener, View.OnKeyListener
 {
     private static final String TAG = "ExampleActivity";
     private RecyclerView mRecyclerView;
     private static final int NUMBER_OF_NAMES = 100;
     private PresentableAdapter<String> mAdapter;
+    private FloatingActionButton mAddNameButton;
+    private TextView mAddNameField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +36,12 @@ public class ExampleActivity extends AppCompatActivity implements PresentableIte
         setContentView(R.layout.activity_example);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setReverseLayout(true);
         mRecyclerView = (RecyclerView) findViewById(R.id.example_recycler);
         mRecyclerView.setLayoutManager(llm);
+
+        mAddNameButton = (FloatingActionButton) findViewById(R.id.example_add_name_btn);
+        mAddNameField = (TextView) findViewById(R.id.example_add_name_field);
     }
 
     @Override
@@ -39,16 +49,18 @@ public class ExampleActivity extends AppCompatActivity implements PresentableIte
         super.onResume();
 
         // Create data (load from your server, load from device, etc..)
-        List<String> data = createRandomNamesList(NUMBER_OF_NAMES);
+        List<String> data = Utils.createRandomNamesList(getResources(), NUMBER_OF_NAMES);
 
         // Create adapter
         mAdapter = new PresentableAdapter<>(new ExampleStringPresenter(), data);
-        mAdapter.setItemClickListener(this);
+        mAdapter.setItemInteractionListener(this);
+//        mAdapter.setItemClickListener(this);
+//        mAdapter.setItemPressedListener(this);
         mRecyclerView.setAdapter(mAdapter);
 
-        // You can update the dataSet as follows
-        // mAdapter.setData();
-        // mAdapter.notifyDataSetChanged();
+        // Interaction with other elements
+        mAddNameButton.setOnClickListener(this);
+        mAddNameField.setOnKeyListener(this);
     }
 
     @Override
@@ -77,49 +89,43 @@ public class ExampleActivity extends AppCompatActivity implements PresentableIte
         String msg = "onItemClicked: " + item;
         Log.d(TAG, msg);
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onItemClicked: Clicked on one of " + Integer.toString(mAdapter.getData().size()) + " items");
     }
 
-    private List<Integer> getExampleNamesResources()
+    @Override
+    public boolean onKey(View view, int keyCode, KeyEvent event)
     {
-        List<Integer> result = new ArrayList<>();
-        // Find all strings
-        Field[] fields = R.string.class.getFields();
-        for(final Field field : fields)
+        if (event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            String name = field.getName(); //name of string
-            if(name.startsWith("example_data_item_"))
+            switch (keyCode)
             {
-                try
-                {
-                    // Add string to list of options
-                    int id = field.getInt(R.string.class); //id of string
-                    result.add(id);
-                }
-                catch (Exception ex) {
-                    // Error grabbing string
-                    Log.e(TAG, "Could not get string: " + ex.getMessage());
-                }
+                case KeyEvent.KEYCODE_DPAD_CENTER:
+                case KeyEvent.KEYCODE_ENTER:
+                    // Simulate button click
+                    onClick(mAddNameButton);
+                    return true;
+                default:
+                    break;
             }
         }
-        return result;
+        return false;
     }
 
-    @NonNull
-    private List<String> createRandomNamesList(int numberOfNames)
-    {
-        List<Integer> namesResources = getExampleNamesResources();
-        if(numberOfNames >= namesResources.size()) {
-            // Cannot use more names than available
-            numberOfNames = namesResources.size();
-        }
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.example_add_name_btn) {
+            // Collect input
+            String input = mAddNameField.getText().toString();
 
-        List<String> randomNames = new ArrayList<>();
-        for(int i = 0; i < numberOfNames; i++)
-        {
-            String name = getString(namesResources.get(i));
-            randomNames.add(name);
+            // Add a new item and refresh list afterwards.
+            mAdapter.addItem(input);
+            mAdapter.notifyDataSetChanged();
+            mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+
+            Utils.closeKeyboard(this);
+
+            String logMsg = String.format("Item '%s' added", input);
+            Log.d(TAG, logMsg);
+            Toast.makeText(this, logMsg, Toast.LENGTH_SHORT).show();
         }
-        return randomNames;
     }
 }

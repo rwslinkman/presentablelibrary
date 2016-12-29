@@ -12,7 +12,7 @@ ext {
     siteUrl = 'https://github.com/rwslinkman/presentablelibrary'
     gitUrl = 'https://github.com/rwslinkman/presentablelibrary.git'
 
-    libraryVersion = '1.6'
+    libraryVersion = '1.7'
 
     developerId = 'rwslinkman'
     developerName = 'Rick Slinkman'
@@ -29,8 +29,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 24
-        versionCode 2
-        versionName "1.6"
+        versionCode 3
+        versionName "1.7"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
