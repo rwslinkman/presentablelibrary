@@ -93,7 +93,7 @@ public class PresentableAdapter<T> extends RecyclerView.Adapter<RecyclerView.Vie
 
     /**
      * Convenience method
-     * @param listener PresentableItemInteractionListener<T>
+     * @param listener PresentableItemInteractionListener
      */
     public void setItemInteractionListener(PresentableItemInteractionListener<T> listener)
     {

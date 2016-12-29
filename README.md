@@ -125,3 +125,10 @@ mAdapter.setItemClickListener(new PresentableItemClickListener<String>()
    }
 });
 ```
+
+Adding an item
+----------
+The PresentableAdapter allows to add an item very easily.<br/>
+```
+mAdapter.addItem(input);
+```
