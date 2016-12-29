@@ -79,6 +79,8 @@ public class PresentableAdapterTest
         assertEquals(2, testAdapter.getData().size());
     }
 
+
+
     private PresentableAdapter<String> buildTestAdapter(boolean shouldCreateView)
     {
         // Explicit data set-up because Arrays.asList() threw UnsupportedOperationException on List.add()

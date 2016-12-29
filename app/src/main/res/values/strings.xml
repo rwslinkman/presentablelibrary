@@ -105,4 +105,5 @@
     <string name="example_data_item_98" translatable="false">Jesenia Steinbeck</string>
     <string name="example_data_item_99" translatable="false">Jan Jansen</string>
     <string name="example_remove_undo">Undo</string>
+    <string name="example_add_name_hint">Add a name...</string>
 </resources>
