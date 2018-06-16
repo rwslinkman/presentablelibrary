@@ -22,7 +22,7 @@ android {
 dependencies {
     def support_version = "27.1.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation 'nl.rwslinkman.presentable:presentable:1.7'
+//    implementation 'nl.rwslinkman.presentable:presentable:1.7.1'
     implementation project(path: ':presentable')
 
     implementation "com.android.support:recyclerview-v7:$support_version"
