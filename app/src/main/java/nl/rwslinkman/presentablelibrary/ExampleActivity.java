@@ -1,9 +1,9 @@
 package nl.rwslinkman.presentablelibrary;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,7 +21,7 @@ import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
  * Example to display the workings of the Presentable library
  * @author Rick Slinkman
  */
-public class ExampleActivity extends AppCompatActivity implements PresentableItemInteractionListener<String>, View.OnClickListener, View.OnKeyListener
+public class ExampleActivity extends Activity implements PresentableItemInteractionListener<String>, View.OnClickListener, View.OnKeyListener
 {
     private static final String TAG = "ExampleActivity";
     private RecyclerView mRecyclerView;

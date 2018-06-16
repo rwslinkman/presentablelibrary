@@ -23,7 +23,15 @@ repositories {
 
 ```
 dependencies {
-	compile 'nl.rwslinkman.presentable:presentable:1.7'
+	compile 'nl.rwslinkman.presentable:presentable:1.7.1'
+}
+```
+
+In some projects, there were difficulties locating the dependency.
+You can add this to your repositories section in your Gradle files.
+```
+maven {
+    url  "https://dl.bintray.com/rwslinkman/maven"
 }
 ```
 
