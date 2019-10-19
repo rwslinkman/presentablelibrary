@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="nl.rwslinkman.presentablelibrary">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="nl.rwslinkman.presentablelibrary">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/presentable_lib_ic_launcher"
         android:label="@string/example_app_name"
         android:supportsRtl="true"
-        android:theme="@style/ExampleAppTheme">
+        >
         <activity android:name=".ExampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -2,18 +2,19 @@ package nl.rwslinkman.presentablelibrary;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import nl.rwslinkman.presentable.PresentableAdapter;
 import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
 
@@ -37,11 +38,11 @@ public class ExampleActivity extends Activity implements PresentableItemInteract
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setReverseLayout(true);
-        mRecyclerView = (RecyclerView) findViewById(R.id.example_recycler);
+        mRecyclerView = findViewById(R.id.example_recycler);
         mRecyclerView.setLayoutManager(llm);
 
-        mAddNameButton = (FloatingActionButton) findViewById(R.id.example_add_name_btn);
-        mAddNameField = (TextView) findViewById(R.id.example_add_name_field);
+        mAddNameButton = findViewById(R.id.example_add_name_btn);
+        mAddNameField = findViewById(R.id.example_add_name_field);
     }
 
     @Override

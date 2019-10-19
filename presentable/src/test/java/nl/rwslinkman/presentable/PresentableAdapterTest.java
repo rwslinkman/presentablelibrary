@@ -1,6 +1,5 @@
 package nl.rwslinkman.presentable;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
@@ -10,6 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import nl.rwslinkman.presentable.mock.MockStringPresenter;
 
 import static org.junit.Assert.*;

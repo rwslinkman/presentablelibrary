@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+
+def libVersion = "1.7.2"
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'presentable'
@@ -12,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/rwslinkman/presentablelibrary'
     gitUrl = 'https://github.com/rwslinkman/presentablelibrary.git'
 
-    libraryVersion = '1.7.1'
+    libraryVersion = "$libVersion"
 
     developerId = 'rwslinkman'
     developerName = 'Rick Slinkman'
@@ -23,14 +26,14 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 3
-        versionName "1.7.1"
+        versionName "$libVersion"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -47,7 +50,7 @@ android {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {

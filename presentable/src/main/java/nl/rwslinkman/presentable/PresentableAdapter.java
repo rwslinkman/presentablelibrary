@@ -1,11 +1,11 @@
 package nl.rwslinkman.presentable;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import nl.rwslinkman.presentable.interaction.ItemInteractionModel;
 import nl.rwslinkman.presentable.interaction.PresentableItemClickListener;
 import nl.rwslinkman.presentable.interaction.PresentableItemInteractionListener;
